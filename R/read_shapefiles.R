@@ -21,6 +21,7 @@ read_shapefiles = function(shp, namecol, verbose=TRUE){ # namecol specifies the 
     metadata = data.frame(dists)
     metadata = as.data.frame(metadata[,-ncol(metadata)])
     if(verbose) print(paste("You would like to estimate compactness for ", l, " districts.", sep=""))
+    metadata = data.frame(dists)
   }, warning = function(war) {
     # warning handler picks up where error was generated
     print(paste("Warning in extracting metadata: ",war))
