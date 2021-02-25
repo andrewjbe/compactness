@@ -69,6 +69,8 @@ read_shapefiles = function(shp, namecol, verbose=TRUE){ # namecol specifies the 
   # I need area calculated in here. And it needs to identify hole polygons.
   
   coords <- tryCatch({ # produces a list of lists
+    temp = rgdal::readOGR(shp, verbose=F)
+    proj = sp::proj4string(temp)
     coords = lapply(1:length(temp), FUN=function(x) get_multi_coord(proj, x))
     if(verbose) print(paste("Successfully extracted coordinates from ", l, " districts.", sep=""))   
     }, warning = function(war) {
