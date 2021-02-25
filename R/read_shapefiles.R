@@ -53,6 +53,7 @@ read_shapefiles = function(shp, namecol, verbose=TRUE){ # namecol specifies the 
     })
       
   proj <- tryCatch({
+    temp = rgdal::readOGR(shp, verbose=F)
     proj = sp::proj4string(temp)
     projected =  sp::spTransform(temp, sp::CRS("+proj=longlat +datum=WGS84"))
     if(verbose) print(paste("Projected shapefiles for ", l, " districts.", sep=""))
